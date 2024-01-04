@@ -28,3 +28,13 @@ class TestStack(unittest.TestCase):
         self.A.push("item")
         self.assertEqual(self.A.top.data, "item")
         self.assertEqual(self.A.top.next_node.next_node.data, [1, 2, 3, 4])
+        with self.assertRaises(AttributeError):
+            fault = self.A.top.next_node.next_node.next_node.data
+
+    def test_pop(self):
+        self.A.push([1, 2, 3, 4])
+        self.A.push("привет!")
+
+        self.assertEqual(self.A.pop(), "привет!")
+        self.assertEqual(self.A.pop(), ([1, 2, 3, 4]))
+        self.assertEqual(self.A.top, None)
