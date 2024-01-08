@@ -38,3 +38,8 @@ class TestStack(unittest.TestCase):
         self.assertEqual(self.A.pop(), "привет!")
         self.assertEqual(self.A.pop(), ([1, 2, 3, 4]))
         self.assertEqual(self.A.top, None)
+
+    def test_str(self):
+        self.assertEqual(self.A.top, None)
+        self.A.top = 2 + 3
+        self.assertEqual(self.A.top, 5)
