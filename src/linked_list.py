@@ -11,6 +11,7 @@ class LinkedList:
     def __init__(self):
         self.head = None
         self.tail = None
+        self.item_list = []
 
     def insert_beginning(self, data: dict) -> None:
         """Принимает данные (словарь) и
@@ -46,3 +47,28 @@ class LinkedList:
 
         ll_string += ' None'
         return ll_string.strip()
+
+    def to_list(self):
+        """Возвращает список с данными,
+        содержащимися в односвязном списке `LinkedList`"""
+        node = self.head
+        while node:
+            self.item_list.append(node.data)
+            node = node.next_node
+        return self.item_list
+
+    def get_data_by_id(self, value):
+        """Возвращает первый найденный в
+        `LinkedList` словарь с ключом 'id',
+        значение которого равно переданному в метод значению."""
+
+        for item in self.to_list():
+            try:
+                isinstance(item, dict)
+                if item['id'] == value:
+                    return item
+            except (TypeError, KeyError):
+                print("Данные не являются словарем или в словаре нет id")
+            else:
+                if item['id'] == value:
+                    return item
